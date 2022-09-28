@@ -1,43 +1,38 @@
 // CMD run project 
 // babel src/app.js --out-file=public/scripts/app.js --presets="env,react" --watch
+
+// other cmd run: 
+// C:\React\react-course-projects\react-indecision-app
+// live-server public
  
 const app = {
     title: "This is app title.",
     subtitle: "This is app subtitle.",
-    options: ['One','Two']
+    options:  [11, 21, 31 ]
 }
 
-// JSX - JavaScript XML
-const template = (
-    <div> 
-        <h1>{app.title}</h1>
-        {app.subtitle  && <p>{app.subtitle}</p>}
-        <p>{app.options.length > 0 ? "here are your options" : "No options" }</p>
-        <ol>
-            <li>Item one</li>
-            <li>Item two</li>
-        </ol>
-    </div>
-);
-const user = {
-    name: "Mike",
-    age: 12,
-    location: "Philadelphia"
+let Visibility = true;
+ 
+const onToogle = (e) => {
+    Visibility = !Visibility;
+    renderContent();
 }
-function getLocation(location) {
-    if(location) {
-        return <p>Location: {location}</p>;
-    }
-}
-const template2 = (
-    <div>
-        <h1>{user.name ? user.name : "Anonymous" }</h1>
-        {(user.age && user.age >= 18) && <p>Age:{user.age} </p> }
-        {getLocation(user.location)}
-    </div>
-);
 const appRoot = document.getElementById('app');
+ 
+const renderContent = () => {
+    // JSX - JavaScript XML
+    const template = (
+        <div> 
+            <h1>{app.title}</h1>
+ 
+            <button onClick={onToogle} >{Visibility == true ? "Hide details" : "Show details" }</button>
+  
+            <p>{Visibility && "Some details here..." }</p>
+            
+        </div>
+    );
 
-ReactDOM.render(template, appRoot);
+    ReactDOM.render(template, appRoot);
+}
 
-console.log();
+renderContent();
